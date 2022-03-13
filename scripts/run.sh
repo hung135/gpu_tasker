@@ -1,29 +1,27 @@
 source env.sh
 source utils.sh
-
-gpu_count=$(get_gpu_count)
-server_list=$(get_server_list)
-gpu_idx=0
-
-for FILE in ../test_files/*.json
+ 
+mkdir -p $config_file_path/completed/
+for FILE in $config_file_path/*.json
 do 
     #echo $FILE
 
-    next_gpu=99
-    until [ "$next_gpu" -lt "99" ]
+    next_gpu=$gpu_count
+    until [ "$next_gpu" -lt "$gpu_count" ]
     do
- 
-            next_gpu=$(get_next_avail)
+            source env.sh
+            get_next_avail
+            next_gpu=$next_gpu_num
+            next_gpu_server=$gpu_server
             #echo $server $gpu_count $proc_count
-            if [ "$next_gpu" -eq "99" ];
+            if [ "$next_gpu" -ge "$gpu_count" ];
             then
-                echo "Totally Booked"
+                echo "All GPUs too BUSY to run: $FILE"
                 
             else
-                echo "running $FILE"
-                run_code $next_gpu $(( $RANDOM % 60 + 5 )) $FILE
-                
-            
+                echo "Running $FILE on GPU: $next_gpu $gpu_server"
+                run_code $gpu_server $next_gpu $(( $RANDOM % 60 + 10 )) $FILE
+                mv $FILE $config_file_path/completed/
             fi
  
         sleep 3

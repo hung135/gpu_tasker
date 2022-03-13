@@ -21,7 +21,10 @@ split_sshkey:
 	 
 ssh:
 	ssh -i ./config/.ssh/id_rsa test@openssh-server -p 2222
- 
+run: provision reset_test_files
+	cd scripts && bash run.sh
+watch: 
+	cd scripts && bash watch.sh
 
 provision:
 	docker exec -it openssh-server bash -c "apk update pciutils"

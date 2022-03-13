@@ -1,5 +1,5 @@
 export config_file_path="../test_files"
-export gpu_count=2
+export gpu_count=3
 export credential_file=../config/.ssh/id_rsa
 export server_username=test
 export ssh_port=2222

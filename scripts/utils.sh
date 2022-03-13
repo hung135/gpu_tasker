@@ -17,13 +17,13 @@ watch_server_process(){
     do
         for server in $server_list
         do
-            
             echo $server
             ssh -i $credential_file $server_username@$server -p $ssh_port ps -ef | grep hello
             echo $(get_server_process $server)
-            # get_next_avail
-            
+            # get_next_avail 
         done
+            get_next_avail
+            echo "Next GPU" $next_gpu_num
             sleep 2
             clear
     done
@@ -34,24 +34,28 @@ next_gpu_num=0
 
 get_next_avail(){
      
-    for (( i=0; i<$gpu_count; i++ ))
+    busy_gpu_count=0
+    total_gpu_count=0
+    for server in $server_list
     do
-        for server in $server_list
+        let "total_gpu_count+=gpu_count"
+        for (( i=0; i<$gpu_count; i++ ))
         do
             xx=$(ssh -i $credential_file $server_username@$server -p $ssh_port ps aux | grep "gpu $i" | wc -l)
             if [ "$xx" -eq "0" ]
             then
-                echo "breaking    $server $i"
+                 
                 gpu_server=$server
                 break
             fi
+           let "busy_gpu_count+=1"
         done
-        if [ "$xx" -eq "0" ]
-        then
-            break
-        fi
+        if [ "$xx" -eq "0" ]; then  break; fi
+         
     done
-    next_gpu_num=$i
+     
+    if [ "$busy_gpu_count" -ge "$total_gpu_count" ]; then let "next_gpu_num=99";  else let "next_gpu_num=$i";  fi
+    
     
 }
 run_code(){

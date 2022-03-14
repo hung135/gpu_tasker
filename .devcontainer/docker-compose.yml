@@ -46,7 +46,7 @@ services:
       # - USER_PASSWORD_FILE=/path/to/file #optional
       - USER_NAME=test
     volumes:
-      - ../config:/config
+      - ../config/id_rsa.pub:/config/.ssh/authorized_keys
     
     restart: unless-stopped
   gpu-server2:
@@ -67,6 +67,6 @@ services:
       # - USER_PASSWORD_FILE=/path/to/file #optional
       - USER_NAME=test
     volumes:
-      - ../config2:/config
+      - ../config/id_rsa.pub:/config/.ssh/authorized_keys
     
     restart: unless-stopped

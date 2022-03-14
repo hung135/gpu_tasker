@@ -1,26 +1,31 @@
 show_process:
-	ssh -i ./config/.ssh/id_rsa test@openssh-server -p 2222 ps aux | grep hello | wc -l
+	ssh -i ./config/id_rsa test@openssh-server -p 2222 ps aux | grep hello | wc -l
 
 kill_all:
-	ssh -i ./config/.ssh/id_rsa test@openssh-server -p 2222 pkill -9 python3
+	ssh -i ./config/id_rsa test@openssh-server -p 2222 pkill -9 python3
 
 upload_code:
-	scp -i ./config/.ssh/id_rsa -P 2222 hello.py test@openssh-server:~/ 
+	. ./scripts/env.sh && scp -i ./config/id_rsa -P 2222 hello.py test@openssh-server:
+	. ./scripts/env.sh && scp -i ./config/id_rsa -P 2222 hello.py test@openssh-server2:
 download_output:
 	echo "SSH somewhere"
 run_code: upload_code
-	ssh -i ./config/.ssh/id_rsa test@openssh-server -p 2222 nohup python3 hello.py &
+	ssh -i ./config/id_rsa test@openssh-server -p 2222 nohup python3 hello.py &
 	$(MAKE) show_process
 sshkey:
-	docker run --rm -it --entrypoint /keygen.sh linuxserver/openssh-server >./config/keys.txt
-	mkdir ./config/.ssh/
-split_sshkey:
-	tail -n 13 ./config/keys.txt | head -n 12>./config/.ssh/id_rsa
-	 
-	tail -n 1 ./config/keys.txt > ./config/.ssh/id_rsa.pub
+	
+
+	@mkdir ./config/ || true 
+	@echo "Just hit ENTER ENTER"
+	@ssh-keygen -f ./config/id_rsa 
+	@chmod 0600 ./config/id_rsa
+	@chmod 0644 ./config/id_rsa.pub
+	@echo "PLEASE Prune All Containers and Rebuild"
+	
+
 	 
 ssh:
-	ssh -i ./config/.ssh/id_rsa test@openssh-server -p 2222
+	ssh -i ./config/id_rsa test@openssh-server -p 2222
 run: provision reset_test_files
 	cd scripts && bash run.sh
 watch: 

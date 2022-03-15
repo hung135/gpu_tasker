@@ -73,5 +73,5 @@ get_next_avail(){
 run_code(){
   
     #echo ssh -i $credential_file $server_username@$1 -p $ssh_port nohup python3 hello.py --gpu $2 $3 $4 &
-    ssh -i $credential_file $server_username@$1 -p $ssh_port nohup python3 hello.py --gpu $2 $3 $4 &
+    ssh -i $credential_file $server_username@$1 -p $ssh_port nohup $runtime_code --gpu $2 $3 $4 &
 }

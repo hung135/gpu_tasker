@@ -6,8 +6,7 @@ kill_all:
 	ssh -i ./config/id_rsa test@openssh-server -p 2222 pkill -9 python3
 
 upload_code:
-	. ./scripts/env.sh && scp -i ./config/id_rsa -P 2222 hello.py test@openssh-server:
-	. ./scripts/env.sh && scp -i ./config/id_rsa -P 2222 hello.py test@openssh-server2:
+
 download_output:
 	echo "SSH somewhere"
 run_code: upload_code
@@ -33,12 +32,7 @@ watch:
 	cd scripts && bash watch.sh
 
 provision: sshkey
-	docker exec -it openssh-server bash -c "apk update pciutils"
-	docker exec -it openssh-server bash -c "apk add python3"
-	docker exec -it openssh-server2 bash -c "apk update pciutils"
-	docker exec -it openssh-server2 bash -c "apk add python3"
-	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
-	docker cp ./config/id_rsa.pub openssh-server2:/config/.ssh/authorized_keys
+	cd scripts/target_prj && bash provision.sh
 
 test_files:
 	cd scripts &&\

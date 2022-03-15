@@ -8,3 +8,5 @@ export ssh_port=2222
 export server_list="gpu-server2 gpu-server1"
 export gpu_count_list="8 4"
 export upload_path=/tmp
+export code_file="hello.py"
+export runtime_code="python3 $code_file"

@@ -3,7 +3,7 @@ get_gpu_count() {
    #echo $(ssh -i $credential_file $server_username@$1  -p $ssh_port lspci | wc -l)
 
     if [ "$1" = "gpu-server2" ]; then
-        echo $1
+         
         gpu_count=2
     else
         gpu_count=4

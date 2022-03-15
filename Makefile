@@ -41,7 +41,7 @@ provision: sshkey
 	docker cp ./config/id_rsa.pub openssh-server2:/config/.ssh/authorized_keys
 
 test_files:
-	cd scripts \
+	cd scripts &&\
 	bash test_gen.sh
 reset_test_files:
 	mkdir -p test_files/completed/ || true

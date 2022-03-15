@@ -5,8 +5,8 @@ mkdir -p $config_file_path/completed/
 for FILE in $config_file_path/*.json
 do 
     #echo $FILE
-
-    next_gpu=$gpu_count
+    get_next_avail 
+    next_gpu="$gpu_count"  
     until [ "$next_gpu" -lt "$gpu_count" ]
     do
             source env.sh

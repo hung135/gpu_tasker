@@ -1,7 +1,7 @@
 get_gpu_count() {
     
    #echo $(ssh -i $credential_file $server_username@$1  -p $ssh_port lspci | wc -l)
-
+    #we set gpu_count as a global variable
     if [ "$1" = "gpu-server2" ]; then
          
         gpu_count=2

@@ -1,3 +1,4 @@
+.PHONY: test_files
 show_process:
 	ssh -i ./config/id_rsa test@openssh-server -p 2222 ps aux | grep hello | wc -l
 
@@ -40,7 +41,8 @@ provision: sshkey
 	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
 
 test_files:
-	mv test_files/completed/* test_files/
+	cd scripts \
+	bash test_gen.sh
 reset_test_files:
 	mkdir -p test_files/completed/ || true
 	mv test_files/completed/* test_files/ || true

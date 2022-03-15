@@ -26,7 +26,7 @@ sshkey:
 	 
 ssh:
 	ssh -i ./config/id_rsa test@openssh-server -p 2222
-run: provision reset_test_files
+run: reset_test_files upload_code
 	cd scripts && bash run.sh
 watch: 
 	cd scripts && bash watch.sh
@@ -39,5 +39,8 @@ provision: sshkey
 	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
 	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
 
-reset_test_files:
+test_files:
 	mv test_files/completed/* test_files/
+reset_test_files:
+	mkdir -p test_files/completed/ || true
+	mv test_files/completed/* test_files/ || true

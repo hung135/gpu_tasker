@@ -31,11 +31,13 @@ run: provision reset_test_files
 watch: 
 	cd scripts && bash watch.sh
 
-provision:
+provision: sshkey
 	docker exec -it openssh-server bash -c "apk update pciutils"
 	docker exec -it openssh-server bash -c "apk add python3"
 	docker exec -it openssh-server2 bash -c "apk update pciutils"
 	docker exec -it openssh-server2 bash -c "apk add python3"
+	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
+	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
 
 reset_test_files:
 	mv test_files/completed/* test_files/

@@ -52,6 +52,7 @@ get_next_avail(){
         let "total_gpu_count+=gpu_count"
         for (( i=0; i<$gpu_count; i++ ))
         do
+ 
             xx=$(ssh -i $credential_file $server_username@$server -p $ssh_port ps aux | grep "gpu $i" | wc -l)
             if [ "$xx" -eq "0" ]
             then

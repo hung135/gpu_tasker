@@ -38,7 +38,7 @@ provision: sshkey
 	docker exec -it openssh-server2 bash -c "apk update pciutils"
 	docker exec -it openssh-server2 bash -c "apk add python3"
 	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
-	docker cp ./config/id_rsa.pub openssh-server:/config/.ssh/authorized_keys
+	docker cp ./config/id_rsa.pub openssh-server2:/config/.ssh/authorized_keys
 
 test_files:
 	cd scripts \

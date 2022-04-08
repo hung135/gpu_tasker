@@ -7,7 +7,7 @@ graph TD
     B["python code #128193;"]
     C["Training Data #128193;"]
     D["RunTime #128193;"] 
-    E["Completed #128193;"]
+    E["Completed #128193;"]-->L
     F{UploadResource.sh}-->|Config, Code, Data|G
     F -->|Copy Config|D
     G{{"GPU SERVER #128421;"}}
@@ -17,6 +17,7 @@ graph TD
     G-->II["Data OutPut #128193;"]-->I
     I{Download.sh}-->|"Copy Down T:/"|J
     J("#128193;")
+      L{reset.sh}-->|Move Each Config|D
     
     
     

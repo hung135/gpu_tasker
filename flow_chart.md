@@ -13,9 +13,10 @@ graph TD
     H{run.sh}-->|Move Each Config|E 
     H-->|Trigger Python Per Config File|G 
     D -->|SUB FOLDER| H
-    G-->II[DATA OUTPUT Dir]-->I
-    I{Download.sh}-->|Copy Down|J
-    J(T: Drive)
+    G-->II["Data OutPut #128193;"]-->I
+    I{Download.sh}-->|"Copy Down T:/"|J
+    J("#128193;")
+    
     
     
 ```

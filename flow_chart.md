@@ -1,6 +1,6 @@
 ```mermaid
 graph TD
-    A[json config] -->|SCP| F
+    A["JSON #128193;"] -->|SCP| F
     B -->|SCP| F
     C -->|SCP| F   
     B["python code #128193;"]

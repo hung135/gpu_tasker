@@ -1,6 +1,8 @@
 Start With a Diamond
 ```mermaid
 graph TD
+
+    AA{{GIT Project REPO}}-->B
     A["JSON #128193;"] -->|SCP| F
     B -->|SCP| F
     C -->|SCP| F   

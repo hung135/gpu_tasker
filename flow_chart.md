@@ -13,8 +13,10 @@ graph TD
     H{run.sh}-->|Move Each Config|E 
     H-->|Trigger Python Per Config File|G 
     D -->|SUB FOLDER| H
-    G-->I[Output Dir]
-    I{Download.sh}
+    G-->II[DATA OUTPUT Dir]-->I
+    I{Download.sh}-->|Copy Down|J
+    J(T: Drive)
+    
     
 ```
     

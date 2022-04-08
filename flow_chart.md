@@ -2,11 +2,16 @@ Start With a Diamond
 ```mermaid
 graph TD
 
-    AA{{GIT Project REPO}}-->B
+    AA{{GIT Project REPO}}
+    CC{{"Database"}}
+    BB{{"Data Scientist"}}
+    AA-->B
     A["JSON #128193;"] -->|SCP| F
     B -->|SCP| F
     C -->|SCP| F   
     B["python code #128193;"]
+    BB-->A
+    CC-->C
     C["Training Data #128193;"]
     D["RunTime #128193;"] 
     E["Completed #128193;"]-->L

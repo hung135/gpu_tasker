@@ -1,3 +1,4 @@
+Start With a Diamond
 ```mermaid
 graph TD
     A["JSON #128193;"] -->|SCP| F

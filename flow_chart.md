@@ -20,7 +20,7 @@ graph TD
     G{{"GPU SERVER #128421;"}}
     H{run.sh}-->|Move Each Config|E 
     H-->|Trigger Python Per Config File|G 
-    D -->|SUB FOLDER| H
+    D --> H
     G-->II["Data OutPut #128193;"]-->I
     I{Download.sh}-->|"Copy Down T:/"|J
     J("#128193;")

@@ -3,10 +3,10 @@ graph TD
     A[json config] -->|SCP| F
     B -->|SCP| F
     C -->|SCP| F   
-    B[python code]
-    C[Training Data]
-    D[RunTime Folder] 
-    E[Completed Folder]
+    B[python code #128193;]
+    C[Training Data #128193;]
+    D[RunTime #128193;] 
+    E[Completed #128193;]
     F{UploadResource.sh}-->|Config, Code, Data|G
     F -->|Copy Config|D
     G(GPU SERVER)

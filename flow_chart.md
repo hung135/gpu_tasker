@@ -10,7 +10,7 @@ graph TD
     E["Completed #128193;"]
     F{UploadResource.sh}-->|Config, Code, Data|G
     F -->|Copy Config|D
-    G(GPU SERVER)
+    G{{"GPU SERVER #128421;"}}
     H{run.sh}-->|Move Each Config|E 
     H-->|Trigger Python Per Config File|G 
     D -->|SUB FOLDER| H
